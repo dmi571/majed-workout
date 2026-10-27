@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827"><title>جدولي الرياضي | ماجد</title>
+<style>
+:root{--bg:#0b1220;--panel:#131d2e;--panel2:#1b2940;--text:#f3f6fb;--muted:#a7b4c8;--accent:#80e0b2;--line:#2b3a52;--danger:#ffb4a9}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#0b1220,#101b2d 55%,#0c1423);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.45}
+header{padding:24px 18px 18px;background:#101a2b;border-bottom:1px solid var(--line)}.wrap{max-width:900px;margin:auto}h1{margin:0;font-size:1.55rem}header p{color:var(--muted);margin:7px 0 0;font-size:.94rem}
+main{max-width:900px;margin:auto;padding:16px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px}.stat,.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:13px}.stat b{display:block;font-size:1.25rem;color:var(--accent)}.stat span{font-size:.8rem;color:var(--muted)}
+label{font-size:.85rem;color:var(--muted);display:block;margin-bottom:5px}.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}select,input,button{font:inherit}select,input{width:100%;background:#0d1727;color:var(--text);border:1px solid #34445d;border-radius:10px;padding:10px;min-width:0}button{cursor:pointer;border:0;border-radius:10px;padding:10px 12px;font-weight:650}.primary{background:var(--accent);color:#092016}.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.daytabs{display:flex;gap:7px;overflow:auto;padding:2px 0 12px}.daytabs button{white-space:nowrap;flex-shrink:0}.daytabs button.active{background:var(--accent);color:#092016}
+.dayhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 12px}.dayhead h2{font-size:1.25rem;margin:0}.muted{color:var(--muted);font-size:.88rem}.exercise{display:grid;grid-template-columns:128px minmax(0,1fr);gap:13px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0}.thumb{width:100%;height:110px;object-fit:cover;border-radius:11px;background:#26364b}.noimg{height:110px;border-radius:11px;background:linear-gradient(135deg,#26364b,#172437);display:flex;align-items:center;justify-content:center;text-align:center;color:#dce6f4;font-size:.85rem;padding:8px}.exname{font-weight:750;font-size:1rem}.english{font-size:.82rem;color:var(--muted);direction:ltr;text-align:right}.exlinks{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.exlinks a{color:var(--accent);font-size:.85rem;text-decoration:none;border:1px solid #3a6758;border-radius:9px;padding:5px 8px}.sets{display:grid;gap:7px;margin-top:8px}.setrow{display:grid;grid-template-columns:48px 1fr 1fr 34px;gap:6px;align-items:center}.setrow .setlabel{font-size:.82rem;color:var(--muted)}.setrow input{padding:8px;text-align:center}.setrow input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);justify-self:center}.small{font-size:.8rem;color:var(--muted)}.exercise-head{display:flex;justify-content:space-between;gap:8px;align-items:start}.badge{font-size:.75rem;border-radius:99px;background:#24364b;color:#d9e7f7;padding:4px 8px;white-space:nowrap}.section-title{font-size:1.08rem;margin:20px 0 8px;color:var(--accent)}.rest{text-align:center;padding:28px 15px}.rest .big{font-size:3rem}.rest h2{margin:6px}.footer{color:var(--muted);font-size:.8rem;text-align:center;padding:25px 10px}.progress{height:7px;background:#25344a;border-radius:9px;overflow:hidden;margin-top:10px}.progress>div{height:100%;background:var(--accent);width:0%}.note{border:1px solid #5b5130;background:#29271c;color:#f5e7b0;border-radius:12px;padding:11px;font-size:.85rem;margin:12px 0}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.hidden{display:none!important}
+@media(max-width:520px){main{padding:12px}.exercise{grid-template-columns:100px minmax(0,1fr);gap:10px;padding:10px}.thumb,.noimg{height:100px}.setrow{grid-template-columns:38px 1fr 1fr 28px}.setrow input{padding:7px 4px}.stats{gap:6px}.stat{padding:10px}.stat b{font-size:1.1rem}}
+</style></head>
+<body>
+<header><div class="wrap"><h1>🏋️ جدولي الرياضي</h1><p>نسختك الشخصية لمتابعة التمارين والأوزان — ماجد</p></div></header>
+<main>
+<div class="stats">
+<div class="stat"><b id="totalDone">0</b><span>مجموعة مكتملة</span></div>
+<div class="stat"><b id="exerciseCount">0</b><span>تمرين في اليوم</span></div>
+<div class="stat"><b id="weekLabel">الأول</b><span>أسبوع التدريب</span></div>
+</div>
+<div class="controls">
+<div><label for="week">أسبوع البرنامج</label><select id="week"><option value="1">الأسبوع الأول — 4 × 10–12</option><option value="2">الأسبوع الثاني — 3 × 15–20</option><option value="3">الأسبوع الثالث — 3 × 20–25</option><option value="4">الأسبوع الرابع — 3 × 8</option></select></div>
+<div><label for="sessionDate">تاريخ الحصة</label><input type="date" id="sessionDate"></div>
+</div>
+<div class="daytabs" id="daytabs"></div>
+<div id="dayContent"></div>
+<div class="actions">
+<button class="secondary" id="exportBtn">تصدير نسخة احتياطية</button>
+<button class="secondary" id="importBtn">استيراد نسخة</button><input id="importFile" type="file" accept="application/json" class="hidden">
+<button class="secondary" id="clearBtn">مسح بيانات هذا اليوم</button>
+</div>
+<div class="note">يُحفظ سجل الأوزان والتكرارات على هذا الجهاز والمتصفح. استخدم «تصدير نسخة احتياطية» للاحتفاظ بنسخة عند تغيير الجهاز أو المتصفح.</div>
+<div class="footer">الصور التوضيحية تُحمّل من صور معاينة YouTube عند توفرها. تمارين البطن والبطات بلا رابط فيديو في البيانات الأصلية، ويمكن إضافة الروابط لاحقًا.</div>
+</main>
+<script>
+const exercises = [{"day": 1, "group": "الأرجل", "name": "Leg extension", "ar": "تمديد الأرجل", "url": "https://youtu.be/YyvSfVjQeL0"}, {"day": 1, "group": "الأرجل", "name": "Leg press", "ar": "ضغط الأرجل", "url": "https://youtu.be/oujca3_Shgw"}, {"day": 1, "group": "الأرجل", "name": "Squat machine", "ar": "سكوات على الجهاز", "url": "https://youtu.be/VEQZeeEAHCM"}, {"day": 1, "group": "الأرجل", "name": "Lunge", "ar": "اندفاع أمامي", "url": "https://youtu.be/D7KaRcUTQeE"}, {"day": 1, "group": "الأرجل", "name": "Seated leg curl", "ar": "ثني الأرجل جالسًا", "url": "https://youtu.be/ELOCsoDSmrg"}, {"day": 1, "group": "الأرجل", "name": "Standing leg curl", "ar": "ثني الأرجل واقفًا", "url": "https://youtu.be/CZVTv9T_Ml8"}, {"day": 1, "group": "الأرجل", "name": "Jefferson squat", "ar": "سكوات جيفرسون", "url": "https://youtu.be/9TbV93ZQEXY"}, {"day": 2, "group": "الأكتاف", "name": "Seated lateral raises", "ar": "رفرفة جانبية جالسًا", "url": "https://youtu.be/nOx4hDCiZJE"}, {"day": 2, "group": "الأكتاف", "name": "Dumbbell press", "ar": "ضغط كتف بالدمبل", "url": "https://youtu.be/qEwKCR5JCog"}, {"day": 2, "group": "الأكتاف", "name": "Hammer shoulder press", "ar": "ضغط كتف جهاز هامر", "url": "https://youtu.be/Pcy6W1S1lEI"}, {"day": 2, "group": "الأكتاف", "name": "Front dumbbell raises", "ar": "رفرفة أمامية بالدمبل", "url": "https://youtu.be/cdKAwIwgrGc"}, {"day": 2, "group": "الأكتاف", "name": "Rear delt fly machine", "ar": "رفرفة خلفية على الجهاز", "url": "https://youtu.be/6yMdhi2DVao"}, {"day": 2, "group": "الأكتاف", "name": "Single dumbbell lateral raises", "ar": "رفرفة جانبية بذراع واحدة", "url": "https://youtu.be/WxAKPTOmYSw"}, {"day": 2, "group": "الأكتاف", "name": "Dumbbell shrug", "ar": "رفع الكتفين بالدمبل", "url": "https://youtu.be/cJRVVxmytaM"}, {"day": 4, "group": "الظهر", "name": "Lat pulldown", "ar": "سحب علوي", "url": "https://youtu.be/CAwf7n6Luuc"}, {"day": 4, "group": "الظهر", "name": "Dumbbell row", "ar": "سحب دمبل بذراع واحدة", "url": "https://youtu.be/roCP6wCXPqo"}, {"day": 4, "group": "الظهر", "name": "Seated low row", "ar": "سحب أرضي جالسًا", "url": "https://youtu.be/GZbfZ033f74"}, {"day": 4, "group": "الظهر", "name": "Barbell row", "ar": "سحب بار منحني", "url": "https://youtu.be/QM7VmGsj5bU"}, {"day": 4, "group": "الظهر", "name": "Close grip lateral pulldown", "ar": "سحب علوي بقبضة ضيقة", "url": "https://youtu.be/v_eJFvdAcUw"}, {"day": 4, "group": "الظهر", "name": "Hyperextension", "ar": "تمديد أسفل الظهر", "url": "https://youtu.be/qw1fAjGNFOY"}, {"day": 5, "group": "الصدر", "name": "Bench press", "ar": "ضغط صدر بالبار", "url": "https://youtu.be/rT7DgCr-3pg"}, {"day": 5, "group": "الصدر", "name": "Incline bench press", "ar": "ضغط صدر مائل", "url": "https://youtu.be/SrqOu55lrYU"}, {"day": 5, "group": "الصدر", "name": "Close grip dumbbell press", "ar": "ضغط دمبل بقبضة متقاربة", "url": "https://youtu.be/s3fgYe-UhJ8"}, {"day": 5, "group": "الصدر", "name": "Incline hammer", "ar": "ضغط صدر مائل هامر", "url": "https://youtu.be/ig0NyNlSce4"}, {"day": 5, "group": "الصدر", "name": "Cable crossover", "ar": "تفتيح كيبل", "url": "https://youtu.be/taI4XduLpTk"}, {"day": 6, "group": "الباي", "name": "Seated dumbbell curls", "ar": "ثني بايسبس بالدمبل جالسًا", "url": "https://youtu.be/soxrZlIl35U"}, {"day": 6, "group": "الباي", "name": "Hammer dumbbell curls", "ar": "ثني هامر بالدمبل", "url": "https://youtu.be/zC3nLlEvin4"}, {"day": 6, "group": "الباي", "name": "Straight bar curls", "ar": "ثني بايسبس بالبار المستقيم", "url": "https://youtu.be/LY1V6UbRHFM"}, {"day": 6, "group": "التراي", "name": "Single arm reverse pushdown", "ar": "دفع كيبل عكسي بذراع واحدة", "url": "https://youtu.be/ebtopenAnQ4"}, {"day": 6, "group": "التراي", "name": "Rope extension", "ar": "تمديد ترايسبس بالحبل", "url": "https://youtu.be/PwOwL4B6iw4"}, {"day": 6, "group": "التراي", "name": "Dips", "ar": "تمرين ديبس", "url": "https://youtu.be/Uv6poyDWsUo"}, {"day": 1, "group": "البطات", "name": "Standing calf raises (toes forward)", "ar": "رفع السمانة واقفًا — أصابع للأمام", "url": ""}, {"day": 1, "group": "البطات", "name": "Seated calf raises", "ar": "رفع السمانة جالسًا", "url": ""}, {"day": 1, "group": "البطات", "name": "Standing calf raises (toes out)", "ar": "رفع السمانة واقفًا — أصابع للخارج", "url": ""}, {"day": 1, "group": "البطن", "name": "Reverse crunches", "ar": "كرنش عكسي", "url": ""}, {"day": 1, "group": "البطن", "name": "Leg raises", "ar": "رفع الأرجل", "url": ""}, {"day": 1, "group": "البطن", "name": "Plank", "ar": "بلانك", "url": ""}];
+const days=[{n:1,name:"الأرجل"},{n:2,name:"الأكتاف"},{n:3,name:"راحة"},{n:4,name:"الظهر"},{n:5,name:"الصدر"},{n:6,name:"باي وتراي"},{n:7,name:"راحة"}];
+const extras=[{group:"البطات",ar:"رفع السمانة واقفًا — أصابع للأمام",name:"Standing calf raises (toes forward)",sets:3,reps:"20",days:[1,4,6]},
+{group:"البطات",ar:"رفع السمانة جالسًا",name:"Seated calf raises",sets:3,reps:"20",days:[1,4,6]},
+{group:"البطات",ar:"رفع السمانة واقفًا — أصابع للخارج",name:"Standing calf raises (toes out)",sets:3,reps:"20",days:[1,4,6]},
+{group:"البطن",ar:"كرنش عكسي",name:"Reverse crunches",sets:3,reps:"25",days:[1,4,6]},
+{group:"البطن",ar:"رفع الأرجل",name:"Leg raises",sets:3,reps:"20–30",days:[1,4,6]},
+{group:"البطن",ar:"بلانك",name:"Plank",sets:3,reps:"60 ثانية",days:[1,4,6]}];
+const weekSettings={1:{sets:4,reps:"10–12",rest:45,label:"الأول"},2:{sets:3,reps:"15–20",rest:75,label:"الثاني"},3:{sets:3,reps:"20–25",rest:90,label:"الثالث"},4:{sets:3,reps:"8",rest:40,label:"الرابع"}};
+let store={};try{store=JSON.parse(localStorage.getItem("majedWorkoutLog")||"{}")}catch(e){store={}}
+let selectedDay=1;
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem("majedWorkoutLog",JSON.stringify(store));render()}
+function currentKey(exId,setNo){return `${$("sessionDate").value}|w${$("week").value}|d${selectedDay}|${exId}|s${setNo}`}
+function getRecord(key){return store[key]||{weight:"",reps:"",done:false}}
+function dayExercises(day){
+ let list=exercises.filter(e=>e.day===day);
+ if([1,4,6].includes(day)) list=list.concat(extras.filter(e=>e.days.includes(day)).map(e=>({...e,day, url:"",id:"extra-"+e.name})));
+ return list;
+}
+function getId(e){return e.id||`${e.day}-${e.group}-${e.name}`}
+function renderTabs(){
+ $("daytabs").innerHTML=days.map(d=>`<button class="${selectedDay===d.n?'active':'secondary'}" data-day="${d.n}">اليوم ${d.n} · ${d.name}</button>`).join("");
+ $("daytabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{selectedDay=+b.dataset.day;render()});
+}
+function render(){
+ renderTabs();
+ const week=weekSettings[$("week").value], list=dayExercises(selectedDay);
+ $("weekLabel").textContent=week.label;
+ $("exerciseCount").textContent=list.length;
+ const allDone=Object.values(store).filter(x=>x.done).length;
+ $("totalDone").textContent=allDone;
+ if([3,7].includes(selectedDay)){
+  $("dayContent").innerHTML=`<div class="panel rest"><div class="big">🧘</div><h2>اليوم ${selectedDay}: راحة</h2><p class="muted">استشفاء ونوم جيد وترطيب مناسب.</p></div>`;return;
+ }
+ const groups=[...new Set(list.map(e=>e.group))];
+ let html=`<div class="dayhead"><div><h2>اليوم ${selectedDay}: ${days.find(d=>d.n===selectedDay).name}</h2><div class="muted">${week.sets} مجموعات · ${week.reps} تكرار · راحة ${week.rest} ثانية</div></div><span class="badge">${$("sessionDate").value}</span></div><div class="progress"><div id="dayProgress"></div></div>`;
+ for(const group of groups){
+  html+=`<div class="section-title">${group}</div>`;
+  for(const e of list.filter(x=>x.group===group)){
+   const id=getId(e), n=e.sets||week.sets, video=e.url?`<a href="${e.url}" target="_blank" rel="noopener">▶ مشاهدة الفيديو</a>`:"";
+   const thumb=e.url?`<img class="thumb" loading="lazy" src="https://img.youtube.com/vi/${(e.url.match(/(?:youtu\.be\/|v=)([^?&/]+)/)||[])[1]}/hqdefault.jpg" alt="صورة ${e.ar}" onerror="this.outerHTML='<div class=&quot;noimg&quot;>صورة التمرين غير متاحة</div>'">`:`<div class="noimg">صورة توضيحية<br>غير مرفقة</div>`;
+   html+=`<article class="exercise"><div>${thumb}</div><div><div class="exercise-head"><div><div class="exname">${e.ar}</div><div class="english">${e.name}</div></div><span class="badge">${n} مجموعات</span></div><div class="exlinks">${video}${e.url?`<a href="https://www.youtube.com/results?search_query=${encodeURIComponent(e.name+" exercise form")}" target="_blank" rel="noopener">بحث عن شرح</a>`:`<a href="https://www.youtube.com/results?search_query=${encodeURIComponent(e.name+" exercise form")}" target="_blank" rel="noopener">ابحث عن فيديو</a>`}</div><div class="small">سجّل وزن كل مجموعة وعداتها ثم علّمها عند الانتهاء.</div><div class="sets">`;
+   for(let i=1;i<=n;i++){
+    const rec=getRecord(currentKey(id,i));
+    html+=`<div class="setrow"><span class="setlabel">مجموعة ${i}</span><input type="number" min="0" step="0.5" placeholder="الوزن" aria-label="الوزن للمجموعة ${i}" data-key="${currentKey(id,i)}" data-field="weight" value="${rec.weight}"><input type="text" placeholder="العدات" aria-label="التكرارات للمجموعة ${i}" data-key="${currentKey(id,i)}" data-field="reps" value="${rec.reps||''}"><input type="checkbox" aria-label="اكتملت المجموعة ${i}" data-key="${currentKey(id,i)}" data-field="done" ${rec.done?'checked':''}></div>`;
+   }
+   html+=`</div></div></article>`;
+  }
+ }
+ $("dayContent").innerHTML=html;
+ $("dayContent").querySelectorAll("[data-key]").forEach(el=>{
+  el.addEventListener("change",()=>{const k=el.dataset.key;store[k]=store[k]||{weight:"",reps:"",done:false};store[k][el.dataset.field]=el.type==="checkbox"?el.checked:el.value;localStorage.setItem("majedWorkoutLog",JSON.stringify(store));updateProgress()});
+ });
+ updateProgress();
+}
+function updateProgress(){
+ const checks=[...document.querySelectorAll('#dayContent input[type="checkbox"]')];
+ const done=checks.filter(x=>x.checked).length;
+ const pct=checks.length?Math.round(done/checks.length*100):0;
+ const bar=$("dayProgress");if(bar)bar.style.width=pct+"%";
+ $("totalDone").textContent=Object.values(store).filter(x=>x.done).length;
+}
+$("week").addEventListener("change",render);
+$("sessionDate").value=new Date().toLocaleDateString("en-CA");
+$("sessionDate").addEventListener("change",render);
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify(store,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="majed-workout-backup.json";a.click();URL.revokeObjectURL(a.href)};
+$("importBtn").onclick=()=>$("importFile").click();
+$("importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!data||typeof data!=="object")throw Error();store={...store,...data};save();alert("تم استيراد السجل.")}catch(err){alert("تعذر قراءة ملف النسخة الاحتياطية.")}e.target.value=""};
+$("clearBtn").onclick=()=>{if(!confirm("هل تريد مسح بيانات هذا اليوم والتاريخ والأسبوع المحددين؟"))return;const prefix=`${$("sessionDate").value}|w${$("week").value}|d${selectedDay}|`;Object.keys(store).forEach(k=>{if(k.startsWith(prefix))delete store[k]});save()};
+render();
+</script></body></html>
